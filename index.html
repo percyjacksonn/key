@@ -1,0 +1,1722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KEY — 4 Day Prep</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Press+Start+2P&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f6efdd;
+      --card: #fffaf0;
+      --ink: #211f1b;
+      --muted: #756d5f;
+      --red: #b94b3c;
+      --green: #657d59;
+      --yellow: #e4b94f;
+      --line: #29251f;
+      --soft: #ece1c6;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Space Grotesk", sans-serif;
+      line-height: 1.5;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    /* HEADER */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 2px solid var(--line);
+      padding: 14px 5%;
+    }
+
+    .nav {
+      max-width: 1250px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: "Press Start 2P", cursive;
+      font-size: 14px;
+    }
+
+    .logo-box {
+      width: 34px;
+      height: 34px;
+      background: var(--ink);
+      border: 2px solid var(--ink);
+      box-shadow: 3px 3px 0 var(--red);
+    }
+
+    .nav-right {
+      font-family: "DM Mono", monospace;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* MAIN */
+
+    main {
+      width: min(1250px, 90%);
+      margin: auto;
+    }
+
+    .hero {
+      padding: 55px 0 30px;
+      border-bottom: 2px solid var(--line);
+    }
+
+    .hero h1 {
+      font-family: "Press Start 2P", cursive;
+      font-size: clamp(28px, 5vw, 58px);
+      line-height: 1.25;
+      max-width: 800px;
+    }
+
+    .hero p {
+      margin-top: 18px;
+      max-width: 650px;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .progress-text {
+      margin-top: 25px;
+      display: inline-block;
+      padding: 9px 13px;
+      border: 2px solid var(--line);
+      background: var(--yellow);
+      font-family: "DM Mono", monospace;
+      font-size: 13px;
+      box-shadow: 3px 3px 0 var(--line);
+    }
+
+    /* DAYS */
+
+    .section {
+      padding: 32px 0;
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 18px;
+    }
+
+    .section-title h2 {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .section-title span {
+      font-family: "DM Mono", monospace;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .days {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .day {
+      min-height: 70px;
+      border: 2px solid var(--line);
+      background: var(--card);
+      box-shadow: 4px 4px 0 var(--line);
+      cursor: pointer;
+      padding: 12px;
+      transition: 0.15s ease;
+      text-align: left;
+    }
+
+    .day:hover {
+      transform: translate(-2px, -2px);
+    }
+
+    .day.active {
+      background: var(--red);
+      color: white;
+    }
+
+    .day-number {
+      font-family: "Press Start 2P", cursive;
+      font-size: 14px;
+    }
+
+    .day-label {
+      margin-top: 7px;
+      font-family: "DM Mono", monospace;
+      font-size: 11px;
+    }
+
+    /* CHECKLIST GRID */
+
+    .check-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+    }
+
+    .check-card {
+      position: relative;
+      min-height: 76px;
+      border: 2px solid var(--line);
+      background: var(--card);
+      box-shadow: 3px 3px 0 var(--line);
+      padding: 12px;
+      cursor: pointer;
+      transition: 0.15s ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .check-card:hover {
+      transform: translate(-2px, -2px);
+    }
+
+    .check-card.checked {
+      background: var(--green);
+      color: white;
+    }
+
+    .check-card input {
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      min-width: 18px;
+      border: 2px solid var(--line);
+      background: var(--card);
+      cursor: pointer;
+      position: relative;
+    }
+
+    .check-card input:checked {
+      background: var(--yellow);
+    }
+
+    .check-card input:checked::after {
+      content: "✓";
+      position: absolute;
+      color: var(--ink);
+      font-weight: 700;
+      font-size: 13px;
+      left: 1px;
+      top: -2px;
+    }
+
+    .check-content {
+      min-width: 0;
+    }
+
+    .check-number {
+      font-family: "DM Mono", monospace;
+      font-size: 9px;
+      opacity: 0.65;
+    }
+
+    .check-name {
+      font-weight: 700;
+      font-size: 13px;
+      line-height: 1.2;
+      margin-top: 2px;
+    }
+
+    /* RESOURCES */
+
+    .resources-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 18px;
+    }
+
+    .resources-head h2 {
+      font-size: 22px;
+    }
+
+    .search {
+      width: 260px;
+      border: 2px solid var(--line);
+      background: var(--card);
+      padding: 11px 13px;
+      outline: none;
+      box-shadow: 3px 3px 0 var(--line);
+    }
+
+    .search:focus {
+      box-shadow: 3px 3px 0 var(--red);
+    }
+
+    .resources {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .resource {
+      border: 2px solid var(--line);
+      background: var(--card);
+      box-shadow: 4px 4px 0 var(--line);
+      padding: 17px;
+      transition: 0.15s ease;
+    }
+
+    .resource:hover {
+      transform: translate(-2px, -2px);
+    }
+
+    .resource-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+
+    .resource-number {
+      font-family: "DM Mono", monospace;
+      color: var(--red);
+      font-size: 11px;
+    }
+
+    .resource h3 {
+      margin-top: 4px;
+      font-size: 17px;
+    }
+
+    .tags {
+      margin-top: 8px;
+      color: var(--muted);
+      font-family: "DM Mono", monospace;
+      font-size: 10px;
+      line-height: 1.6;
+    }
+
+    .resource-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .resource-panel {
+      border: 2px solid var(--line);
+      padding: 11px;
+      background: var(--soft);
+    }
+
+    .resource-panel h4 {
+      font-family: "DM Mono", monospace;
+      font-size: 10px;
+      margin-bottom: 9px;
+    }
+
+    .resource-links {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .resource-btn {
+      display: block;
+      text-decoration: none;
+      color: var(--ink);
+      border: 2px solid var(--line);
+      background: var(--card);
+      padding: 8px 9px;
+      font-size: 11px;
+      font-weight: 600;
+      transition: 0.15s ease;
+    }
+
+    .resource-btn.learn:hover {
+      background: var(--red);
+      color: white;
+      transform: translateX(2px);
+    }
+
+    .resource-btn.practice:hover {
+      background: var(--green);
+      color: white;
+      transform: translateX(2px);
+    }
+
+    /* FOOTER */
+
+    footer {
+      margin-top: 40px;
+      padding: 25px 0;
+      border-top: 2px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      font-family: "DM Mono", monospace;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    /* TABLET */
+
+    @media (max-width: 950px) {
+      .check-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .resources {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 650px) {
+      header {
+        padding: 12px 5%;
+      }
+
+      .logo {
+        font-size: 11px;
+      }
+
+      .logo-box {
+        width: 29px;
+        height: 29px;
+      }
+
+      .nav-right {
+        display: none;
+      }
+
+      .hero {
+        padding: 38px 0 25px;
+      }
+
+      .hero h1 {
+        font-size: 25px;
+      }
+
+      .hero p {
+        font-size: 14px;
+      }
+
+      .days {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .check-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 9px;
+      }
+
+      .check-card {
+        min-height: 70px;
+        padding: 9px;
+      }
+
+      .check-name {
+        font-size: 11px;
+      }
+
+      .resources-head {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .search {
+        width: 100%;
+      }
+
+      .resource-columns {
+        grid-template-columns: 1fr;
+      }
+
+      footer {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .check-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .check-card {
+        min-height: 65px;
+      }
+
+      .check-name {
+        font-size: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <nav class="nav">
+    <div class="logo">
+      <div class="logo-box"></div>
+      KEY
+    </div>
+
+    <div class="nav-right">
+      4 DAY PREP SYSTEM
+    </div>
+  </nav>
+</header>
+
+<main>
+
+  <!-- HERO -->
+
+  <section class="hero">
+    <h1>4 DAY PREP</h1>
+
+    <p>
+      Everything you need for coding, debugging, AI, web development,
+      competitive programming, quizzes and hackathons.
+    </p>
+
+    <div class="progress-text">
+      <span id="overallCount">0</span> / 4 DAYS COMPLETED
+    </div>
+  </section>
+
+
+  <!-- DAY SELECTOR -->
+
+  <section class="section">
+
+    <div class="section-title">
+      <h2>SELECT DAY</h2>
+      <span>Choose your preparation day</span>
+    </div>
+
+    <div class="days">
+
+      <button class="day active" data-day="1">
+        <div class="day-number">01</div>
+        <div class="day-label">DAY ONE</div>
+      </button>
+
+      <button class="day" data-day="2">
+        <div class="day-number">02</div>
+        <div class="day-label">DAY TWO</div>
+      </button>
+
+      <button class="day" data-day="3">
+        <div class="day-number">03</div>
+        <div class="day-label">DAY THREE</div>
+      </button>
+
+      <button class="day" data-day="4">
+        <div class="day-number">04</div>
+        <div class="day-label">DAY FOUR</div>
+      </button>
+
+    </div>
+  </section>
+
+
+  <!-- CHECKLIST -->
+
+  <section class="section">
+
+    <div class="section-title">
+      <h2>PREP CHECKLIST</h2>
+      <span id="dayStatus">DAY 1</span>
+    </div>
+
+    <div class="check-grid">
+
+      <label class="check-card" data-area="debugging">
+        <input type="checkbox">
+        <div class="check-content">
+          <div class="check-number">01</div>
+          <div class="check-name">Code Debugging</div>
+        </div>
+      </label>
+
+      <label class="check-card" data-area="cp">
+        <input type="checkbox">
+        <div class="check-content">
+          <div class="check-number">02</div>
+          <div class="check-name">Competitive Programming</div>
+        </div>
+      </label>
+
+      <label class="check-card" data-area="dsa">
+        <input type="checkbox">
+        <div class="check-content">
+          <div class="check-number">03</div>
+          <div class="check-name">DSA / Algorithms</div>
+        </div>
+      </label>
+
+      <label class="check-card" data-area="javascript">
+        <input type="checkbox">
+        <div class="check-content">
+          <div class="check-number">04</div>
+          <div class="check-name">JavaScript</div>
+        </div>
+      </label>
+
+      <label class="check-card" data-area="web">
+        <input type="checkbox">
+        <div class="check-content">
+          <div class="check-number">05</div>
+          <div class="check-name">Web Development</div>
+        </div>
+      </label>
+
+      <label class="check-card" data-area="figma">
+        <input type="checkbox">
+        <div class="check-content">
+          <div class="check-number">06</div>
+          <div class="check-name">Figma / UI-UX</div>
+        </div>
+      </label>
+
+      <label class="check-card" data-area="app">
+        <input type="checkbox">
+        <div class="check-content">
+          <div class="check-number">07</div>
+          <div class="check-name">App Development</div>
+        </div>
+      </label>
+
+      <label class="check-card" data-area="ai">
+        <input type="checkbox">
+        <div class="check-content">
+          <div class="check-number">08</div>
+          <div class="check-name">AI / GenAI</div>
+        </div>
+      </label>
+
+      <label class="check-card" data-area="hackathon">
+        <input type="checkbox">
+        <div class="check-content">
+          <div class="check-number">09</div>
+          <div class="check-name">Hackathon</div>
+        </div>
+      </label>
+
+      <label class="check-card" data-area="quiz">
+        <input type="checkbox">
+        <div class="check-content">
+          <div class="check-number">10</div>
+          <div class="check-name">Technical Quiz</div>
+        </div>
+      </label>
+
+      <label class="check-card" data-area="dbms">
+        <input type="checkbox">
+        <div class="check-content">
+          <div class="check-number">11</div>
+          <div class="check-name">DBMS / SQL</div>
+        </div>
+      </label>
+
+      <label class="check-card" data-area="os">
+        <input type="checkbox">
+        <div class="check-content">
+          <div class="check-number">12</div>
+          <div class="check-name">Operating Systems</div>
+        </div>
+      </label>
+
+      <label class="check-card" data-area="cn">
+        <input type="checkbox">
+        <div class="check-content">
+          <div class="check-number">13</div>
+          <div class="check-name">Computer Networks</div>
+        </div>
+      </label>
+
+      <label class="check-card" data-area="aptitude">
+        <input type="checkbox">
+        <div class="check-content">
+          <div class="check-number">14</div>
+          <div class="check-name">Aptitude / Logic</div>
+        </div>
+      </label>
+
+      <label class="check-card" data-area="tech">
+        <input type="checkbox">
+        <div class="check-content">
+          <div class="check-number">15</div>
+          <div class="check-name">Technology Awareness</div>
+        </div>
+      </label>
+
+      <label class="check-card" data-area="viva">
+        <input type="checkbox">
+        <div class="check-content">
+          <div class="check-number">16</div>
+          <div class="check-name">Presentation / Viva</div>
+        </div>
+      </label>
+
+      <label class="check-card" data-area="git">
+        <input type="checkbox">
+        <div class="check-content">
+          <div class="check-number">17</div>
+          <div class="check-name">Git / GitHub</div>
+        </div>
+      </label>
+
+    </div>
+  </section>
+
+
+  <!-- RESOURCES -->
+
+  <section class="section">
+
+    <div class="resources-head">
+      <div>
+        <h2>RESOURCES</h2>
+      </div>
+
+      <input
+        type="text"
+        id="searchInput"
+        class="search"
+        placeholder="Search resources..."
+      >
+    </div>
+
+    <div class="resources" id="resources">
+
+
+      <!-- 01 -->
+
+      <article class="resource">
+        <div class="resource-top">
+          <div>
+            <div class="resource-number">01</div>
+            <h3>Code Debugging</h3>
+            <div class="tags">C · Python · Java · DevTools</div>
+          </div>
+        </div>
+
+        <div class="resource-columns">
+
+          <div class="resource-panel">
+            <h4>LEARN</h4>
+
+            <div class="resource-links">
+              <a class="resource-btn learn"
+                 href="https://exercism.org/"
+                 target="_blank">Exercism</a>
+
+              <a class="resource-btn learn"
+                 href="https://developer.chrome.com/docs/devtools/"
+                 target="_blank">Chrome DevTools</a>
+            </div>
+          </div>
+
+          <div class="resource-panel">
+            <h4>PRACTICE</h4>
+
+            <div class="resource-links">
+              <a class="resource-btn practice"
+                 href="https://www.hackerrank.com/domains/c"
+                 target="_blank">HackerRank C</a>
+
+              <a class="resource-btn practice"
+                 href="https://www.hackerrank.com/domains/python"
+                 target="_blank">HackerRank Python</a>
+
+              <a class="resource-btn practice"
+                 href="https://www.hackerrank.com/domains/java"
+                 target="_blank">HackerRank Java</a>
+
+              <a class="resource-btn practice"
+                 href="https://www.codechef.com/practice"
+                 target="_blank">CodeChef</a>
+            </div>
+          </div>
+
+        </div>
+      </article>
+
+
+      <!-- 02 -->
+
+      <article class="resource">
+        <div class="resource-top">
+          <div>
+            <div class="resource-number">02</div>
+            <h3>Competitive Programming</h3>
+            <div class="tags">CP31 · CSES · Codeforces · LeetCode · USACO</div>
+          </div>
+        </div>
+
+        <div class="resource-columns">
+
+          <div class="resource-panel">
+            <h4>LEARN</h4>
+
+            <div class="resource-links">
+              <a class="resource-btn learn"
+                 href="https://cses.fi/problemset/"
+                 target="_blank">CSES</a>
+
+              <a class="resource-btn learn"
+                 href="https://usaco.guide/"
+                 target="_blank">USACO Guide</a>
+            </div>
+          </div>
+
+          <div class="resource-panel">
+            <h4>PRACTICE</h4>
+
+            <div class="resource-links">
+              <a class="resource-btn practice"
+                 href="https://codeforces.com/"
+                 target="_blank">Codeforces</a>
+
+              <a class="resource-btn practice"
+                 href="https://www.tle-eliminators.com/cp-sheet"
+                 target="_blank">CP31 Sheet</a>
+
+              <a class="resource-btn practice"
+                 href="https://leetcode.com/studyplan/"
+                 target="_blank">LeetCode Study Plans</a>
+            </div>
+          </div>
+
+        </div>
+      </article>
+
+
+      <!-- 03 -->
+
+      <article class="resource">
+        <div class="resource-top">
+          <div>
+            <div class="resource-number">03</div>
+            <h3>DSA / Algorithms</h3>
+            <div class="tags">
+              Arrays · Strings · Sorting · Searching · Hashing · Two Pointers · Binary Search · Stack · Queue · Recursion · Greedy · Basic DP
+            </div>
+          </div>
+        </div>
+
+        <div class="resource-columns">
+
+          <div class="resource-panel">
+            <h4>LEARN</h4>
+
+            <div class="resource-links">
+              <a class="resource-btn learn"
+                 href="https://www.geeksforgeeks.org/dsa/"
+                 target="_blank">GFG DSA</a>
+
+              <a class="resource-btn learn"
+                 href="https://visualgo.net/en"
+                 target="_blank">VisuAlgo</a>
+
+              <a class="resource-btn learn"
+                 href="https://neetcode.io/"
+                 target="_blank">NeetCode</a>
+            </div>
+          </div>
+
+          <div class="resource-panel">
+            <h4>PRACTICE</h4>
+
+            <div class="resource-links">
+              <a class="resource-btn practice"
+                 href="https://leetcode.com/"
+                 target="_blank">LeetCode</a>
+
+              <a class="resource-btn practice"
+                 href="https://codeforces.com/"
+                 target="_blank">Codeforces</a>
+            </div>
+          </div>
+
+        </div>
+      </article>
+
+
+      <!-- 04 -->
+
+      <article class="resource">
+        <div class="resource-top">
+          <div>
+            <div class="resource-number">04</div>
+            <h3>JavaScript</h3>
+            <div class="tags">JS Basics · DOM · Events · Logic</div>
+          </div>
+        </div>
+
+        <div class="resource-columns">
+
+          <div class="resource-panel">
+            <h4>LEARN</h4>
+
+            <div class="resource-links">
+              <a class="resource-btn learn"
+                 href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"
+                 target="_blank">MDN JavaScript</a>
+
+              <a class="resource-btn learn"
+                 href="https://javascript.info/"
+                 target="_blank">JavaScript.info</a>
+
+              <a class="resource-btn learn"
+                 href="https://www.youtube.com/@BroCodez"
+                 target="_blank">Bro Code</a>
+            </div>
+          </div>
+
+          <div class="resource-panel">
+            <h4>PRACTICE</h4>
+
+            <div class="resource-links">
+              <a class="resource-btn practice"
+                 href="https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures-v8/"
+                 target="_blank">freeCodeCamp JS</a>
+
+              <a class="resource-btn practice"
+                 href="https://www.frontendmentor.io/"
+                 target="_blank">Frontend Mentor</a>
+            </div>
+          </div>
+
+        </div>
+      </article>
+
+
+      <!-- 05 -->
+
+      <article class="resource">
+        <div class="resource-top">
+          <div>
+            <div class="resource-number">05</div>
+            <h3>Web Development</h3>
+            <div class="tags">HTML · CSS · Flexbox · Grid · Responsive · DOM · Forms</div>
+          </div>
+        </div>
+
+        <div class="resource-columns">
+
+          <div class="resource-panel">
+            <h4>LEARN</h4>
+
+            <div class="resource-links">
+              <a class="resource-btn learn"
+                 href="https://developer.mozilla.org/en-US/docs/Learn_web_development"
+                 target="_blank">MDN Web Development</a>
+
+              <a class="resource-btn learn"
+                 href="https://www.theodinproject.com/"
+                 target="_blank">The Odin Project</a>
+
+              <a class="resource-btn learn"
+                 href="https://css-tricks.com/"
+                 target="_blank">CSS-Tricks</a>
+            </div>
+          </div>
+
+          <div class="resource-panel">
+            <h4>PRACTICE</h4>
+
+            <div class="resource-links">
+              <a class="resource-btn practice"
+                 href="https://www.frontendmentor.io/"
+                 target="_blank">Frontend Mentor</a>
+
+              <a class="resource-btn practice"
+                 href="https://www.freecodecamp.org/learn/"
+                 target="_blank">freeCodeCamp</a>
+            </div>
+          </div>
+
+        </div>
+      </article>
+
+
+      <!-- 06 -->
+
+      <article class="resource">
+        <div class="resource-top">
+          <div>
+            <div class="resource-number">06</div>
+            <h3>Figma / UI-UX</h3>
+            <div class="tags">Frames · Layers · Auto Layout · Components · Prototype</div>
+          </div>
+        </div>
+
+        <div class="resource-columns">
+
+          <div class="resource-panel">
+            <h4>LEARN</h4>
+
+            <div class="resource-links">
+              <a class="resource-btn learn"
+                 href="https://help.figma.com/hc/en-us/categories/360002051613-Get-started"
+                 target="_blank">Figma Learn</a>
+
+              <a class="resource-btn learn"
+                 href="https://www.youtube.com/@Figma"
+                 target="_blank">Figma YouTube</a>
+            </div>
+          </div>
+
+          <div class="resource-panel">
+            <h4>PRACTICE</h4>
+
+            <div class="resource-links">
+              <a class="resource-btn practice"
+                 href="https://www.figma.com/community"
+                 target="_blank">Figma Community</a>
+            </div>
+          </div>
+
+        </div>
+      </article>
+
+
+      <!-- 07 -->
+
+      <article class="resource">
+        <div class="resource-top">
+          <div>
+            <div class="resource-number">07</div>
+            <h3>App Development</h3>
+            <div class="tags">UI · Input · Logic · Data · API · Output</div>
+          </div>
+        </div>
+
+        <div class="resource-columns">
+
+          <div class="resource-panel">
+            <h4>LEARN</h4>
+
+            <div class="resource-links">
+              <a class="resource-btn learn"
+                 href="https://docs.flutter.dev/"
+                 target="_blank">Flutter Learn</a>
+
+              <a class="resource-btn learn"
+                 href="https://developer.android.com/"
+                 target="_blank">Android Developers</a>
+
+              <a class="resource-btn learn"
+                 href="https://reactnative.dev/"
+                 target="_blank">React Native</a>
+            </div>
+          </div>
+
+          <div class="resource-panel">
+            <h4>PRACTICE</h4>
+
+            <div class="resource-links">
+              <a class="resource-btn practice"
+                 href="https://docs.flutter.dev/codelabs"
+                 target="_blank">Flutter Codelabs</a>
+            </div>
+          </div>
+
+        </div>
+      </article>
+
+
+      <!-- 08 -->
+
+      <article class="resource">
+        <div class="resource-top">
+          <div>
+            <div class="resource-number">08</div>
+            <h3>AI / GenAI</h3>
+            <div class="tags">LLM · Prompting · API · NLP · CV · Agents</div>
+          </div>
+        </div>
+
+        <div class="resource-columns">
+
+          <div class="resource-panel">
+            <h4>LEARN</h4>
+
+            <div class="resource-links">
+              <a class="resource-btn learn"
+                 href="https://github.com/microsoft/AI-For-Beginners"
+                 target="_blank">Microsoft AI for Beginners</a>
+
+              <a class="resource-btn learn"
+                 href="https://huggingface.co/learn"
+                 target="_blank">Hugging Face</a>
+            </div>
+          </div>
+
+          <div class="resource-panel">
+            <h4>PRACTICE</h4>
+
+            <div class="resource-links">
+              <a class="resource-btn practice"
+                 href="https://aistudio.google.com/"
+                 target="_blank">Google AI Studio</a>
+
+              <a class="resource-btn practice"
+                 href="https://www.kaggle.com/"
+                 target="_blank">Kaggle</a>
+            </div>
+          </div>
+
+        </div>
+      </article>
+
+
+      <!-- 09 -->
+
+      <article class="resource">
+        <div class="resource-top">
+          <div>
+            <div class="resource-number">09</div>
+            <h3>Hackathon</h3>
+            <div class="tags">Problem · User · Solution · Prototype · Demo · Impact</div>
+          </div>
+        </div>
+
+        <div class="resource-columns">
+
+          <div class="resource-panel">
+            <h4>LEARN</h4>
+
+            <div class="resource-links">
+              <a class="resource-btn learn"
+                 href="https://devpost.com/"
+                 target="_blank">Devpost</a>
+
+              <a class="resource-btn learn"
+                 href="https://mlh.io/"
+                 target="_blank">Major League Hacking</a>
+            </div>
+          </div>
+
+          <div class="resource-panel">
+            <h4>PRACTICE</h4>
+
+            <div class="resource-links">
+              <a class="resource-btn practice"
+                 href="https://devpost.com/software"
+                 target="_blank">Devpost Projects</a>
+
+              <a class="resource-btn practice"
+                 href="https://devpost.com/hackathons"
+                 target="_blank">Hackathons</a>
+            </div>
+          </div>
+
+        </div>
+      </article>
+
+
+      <!-- 10 -->
+
+      <article class="resource">
+        <div class="resource-top">
+          <div>
+            <div class="resource-number">10</div>
+            <h3>Technical Quiz</h3>
+            <div class="tags">C · C++ · Java · Python · OOP · DSA · DBMS · OS · CN · SQL</div>
+          </div>
+        </div>
+
+        <div class="resource-columns">
+
+          <div class="resource-panel">
+            <h4>LEARN</h4>
+
+            <div class="resource-links">
+              <a class="resource-btn learn"
+                 href="https://www.geeksforgeeks.org/quizzes/"
+                 target="_blank">GFG Quizzes</a>
+            </div>
+          </div>
+
+          <div class="resource-panel">
+            <h4>PRACTICE</h4>
+
+            <div class="resource-links">
+              <a class="resource-btn practice"
+                 href="https://www.indiabix.com/"
+                 target="_blank">IndiaBIX</a>
+
+              <a class="resource-btn practice"
+                 href="https://www.sanfoundry.com/"
+                 target="_blank">Sanfoundry</a>
+
+              <a class="resource-btn practice"
+                 href="https://www.examvibe.com/"
+                 target="_blank">ExamVibe</a>
+            </div>
+          </div>
+
+        </div>
+      </article>
+
+
+      <!-- 11 -->
+
+      <article class="resource">
+        <div class="resource-top">
+          <div>
+            <div class="resource-number">11</div>
+            <h3>DBMS / SQL</h3>
+            <div class="tags">SELECT · WHERE · GROUP BY · JOIN · Keys · Normalization · Transactions</div>
+          </div>
+        </div>
+
+        <div class="resource-columns">
+
+          <div class="resource-panel">
+            <h4>LEARN</h4>
+
+            <div class="resource-links">
+              <a class="resource-btn learn"
+                 href="https://sqlbolt.com/"
+                 target="_blank">SQLBolt</a>
+
+              <a class="resource-btn learn"
+                 href="https://www.geeksforgeeks.org/dbms/"
+                 target="_blank">GFG DBMS</a>
+            </div>
+          </div>
+
+          <div class="resource-panel">
+            <h4>PRACTICE</h4>
+
+            <div class="resource-links">
+              <a class="resource-btn practice"
+                 href="https://sqlzoo.net/wiki/SQL_Tutorial"
+                 target="_blank">SQLZoo</a>
+
+              <a class="resource-btn practice"
+                 href="https://www.w3schools.com/sql/"
+                 target="_blank">W3Schools SQL</a>
+            </div>
+          </div>
+
+        </div>
+      </article>
+
+
+      <!-- 12 -->
+
+      <article class="resource">
+        <div class="resource-top">
+          <div>
+            <div class="resource-number">12</div>
+            <h3>Operating Systems</h3>
+            <div class="tags">Processes · Threads · Scheduling · Deadlocks · Memory · Paging</div>
+          </div>
+        </div>
+
+        <div class="resource-columns">
+
+          <div class="resource-panel">
+            <h4>LEARN</h4>
+
+            <div class="resource-links">
+              <a class="resource-btn learn"
+                 href="https://www.geeksforgeeks.org/operating-systems/"
+                 target="_blank">GFG OS</a>
+            </div>
+          </div>
+
+          <div class="resource-panel">
+            <h4>PRACTICE</h4>
+
+            <div class="resource-links">
+              <a class="resource-btn practice"
+                 href="https://www.sanfoundry.com/operating-system-questions-answers/"
+                 target="_blank">Sanfoundry OS MCQs</a>
+            </div>
+          </div>
+
+        </div>
+      </article>
+
+
+      <!-- 13 -->
+
+      <article class="resource">
+        <div class="resource-top">
+          <div>
+            <div class="resource-number">13</div>
+            <h3>Computer Networks</h3>
+            <div class="tags">OSI · TCP/IP · HTTP · DNS · IP · TCP/UDP · Routing · Ports</div>
+          </div>
+        </div>
+
+        <div class="resource-columns">
+
+          <div class="resource-panel">
+            <h4>LEARN</h4>
+
+            <div class="resource-links">
+              <a class="resource-btn learn"
+                 href="https://www.geeksforgeeks.org/computer-network-tutorials/"
+                 target="_blank">GFG Computer Networks</a>
+
+              <a class="resource-btn learn"
+                 href="https://www.cisco.com/c/en/us/training-events/training-certifications/training.html"
+                 target="_blank">Cisco Networking</a>
+            </div>
+          </div>
+
+          <div class="resource-panel">
+            <h4>PRACTICE</h4>
+
+            <div class="resource-links">
+              <a class="resource-btn practice"
+                 href="https://www.sanfoundry.com/computer-network-questions-answers/"
+                 target="_blank">Sanfoundry CN</a>
+            </div>
+          </div>
+
+        </div>
+      </article>
+
+
+      <!-- 14 -->
+
+      <article class="resource">
+        <div class="resource-top">
+          <div>
+            <div class="resource-number">14</div>
+            <h3>Aptitude / Logic</h3>
+            <div class="tags">Percentages · Ratios · Time/Work · Speed · Probability · Series · Puzzles</div>
+          </div>
+        </div>
+
+        <div class="resource-columns">
+
+          <div class="resource-panel">
+            <h4>LEARN</h4>
+
+            <div class="resource-links">
+              <a class="resource-btn learn"
+                 href="https://www.indiabix.com/aptitude/questions-and-answers/"
+                 target="_blank">IndiaBIX Aptitude</a>
+
+              <a class="resource-btn learn"
+                 href="https://www.indiabix.com/logical-reasoning/questions-and-answers/"
+                 target="_blank">IndiaBIX Logic</a>
+            </div>
+          </div>
+
+          <div class="resource-panel">
+            <h4>PRACTICE</h4>
+
+            <div class="resource-links">
+              <a class="resource-btn practice"
+                 href="https://www.geeksforgeeks.org/aptitude/"
+                 target="_blank">GFG Aptitude</a>
+
+              <a class="resource-btn practice"
+                 href="https://www.indiabix.com/"
+                 target="_blank">IndiaBIX</a>
+            </div>
+          </div>
+
+        </div>
+      </article>
+
+
+      <!-- 15 -->
+
+      <article class="resource">
+        <div class="resource-top">
+          <div>
+            <div class="resource-number">15</div>
+            <h3>Technology Awareness</h3>
+            <div class="tags">AI · Cloud · Cybersecurity · Web · Space · Semiconductors</div>
+          </div>
+        </div>
+
+        <div class="resource-columns">
+
+          <div class="resource-panel">
+            <h4>LEARN</h4>
+
+            <div class="resource-links">
+              <a class="resource-btn learn"
+                 href="https://developers.google.com/"
+                 target="_blank">Google for Developers</a>
+
+              <a class="resource-btn learn"
+                 href="https://github.blog/"
+                 target="_blank">GitHub Blog</a>
+            </div>
+          </div>
+
+          <div class="resource-panel">
+            <h4>READ</h4>
+
+            <div class="resource-links">
+              <a class="resource-btn practice"
+                 href="https://techcrunch.com/"
+                 target="_blank">TechCrunch</a>
+
+              <a class="resource-btn practice"
+                 href="https://thehackernews.com/"
+                 target="_blank">The Hacker News</a>
+            </div>
+          </div>
+
+        </div>
+      </article>
+
+
+      <!-- 16 -->
+
+      <article class="resource">
+        <div class="resource-top">
+          <div>
+            <div class="resource-number">16</div>
+            <h3>Presentation / Viva</h3>
+            <div class="tags">Problem · Why · Solution · Demo · Limitations · Future Scope</div>
+          </div>
+        </div>
+
+        <div class="resource-columns">
+
+          <div class="resource-panel">
+            <h4>LEARN</h4>
+
+            <div class="resource-links">
+              <a class="resource-btn learn"
+                 href="https://www.ted.com/talks"
+                 target="_blank">TED Talks</a>
+
+              <a class="resource-btn learn"
+                 href="https://www.toastmasters.org/"
+                 target="_blank">Toastmasters</a>
+            </div>
+          </div>
+
+          <div class="resource-panel">
+            <h4>PRACTICE</h4>
+
+            <div class="resource-links">
+              <a class="resource-btn practice"
+                 href="https://www.ted.com/talks"
+                 target="_blank">TED Practice</a>
+            </div>
+          </div>
+
+        </div>
+      </article>
+
+
+      <!-- 17 -->
+
+      <article class="resource">
+        <div class="resource-top">
+          <div>
+            <div class="resource-number">17</div>
+            <h3>Git / GitHub</h3>
+            <div class="tags">Clone · Branch · Add · Commit · Push · Pull · Merge</div>
+          </div>
+        </div>
+
+        <div class="resource-columns">
+
+          <div class="resource-panel">
+            <h4>LEARN</h4>
+
+            <div class="resource-links">
+              <a class="resource-btn learn"
+                 href="https://skills.github.com/"
+                 target="_blank">GitHub Skills</a>
+
+              <a class="resource-btn learn"
+                 href="https://git-scm.com/doc"
+                 target="_blank">Git Documentation</a>
+            </div>
+          </div>
+
+          <div class="resource-panel">
+            <h4>PRACTICE</h4>
+
+            <div class="resource-links">
+              <a class="resource-btn practice"
+                 href="https://skills.github.com/"
+                 target="_blank">GitHub Skills</a>
+            </div>
+          </div>
+
+        </div>
+      </article>
+
+
+      <!-- 18 -->
+
+      <article class="resource">
+        <div class="resource-top">
+          <div>
+            <div class="resource-number">18</div>
+            <h3>Overall Reference</h3>
+            <div class="tags">Roadmaps · Programming · LeetCode · JavaScript · BTech</div>
+          </div>
+        </div>
+
+        <div class="resource-columns">
+
+          <div class="resource-panel">
+            <h4>LEARN</h4>
+
+            <div class="resource-links">
+              <a class="resource-btn learn"
+                 href="https://roadmap.sh/"
+                 target="_blank">roadmap.sh</a>
+
+              <a class="resource-btn learn"
+                 href="https://www.reddit.com/r/learnprogramming/"
+                 target="_blank">r/learnprogramming</a>
+
+              <a class="resource-btn learn"
+                 href="https://www.reddit.com/r/learnjavascript/"
+                 target="_blank">r/learnjavascript</a>
+            </div>
+          </div>
+
+          <div class="resource-panel">
+            <h4>REFERENCE</h4>
+
+            <div class="resource-links">
+              <a class="resource-btn practice"
+                 href="https://www.reddit.com/r/leetcode/"
+                 target="_blank">r/leetcode</a>
+
+              <a class="resource-btn practice"
+                 href="https://www.reddit.com/r/Btechtards/"
+                 target="_blank">r/Btechtards</a>
+            </div>
+          </div>
+
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+
+  <footer>
+    <span>KEY — 4 DAY PREP</span>
+    <span>BUILD. PRACTICE. COMPETE.</span>
+  </footer>
+
+</main>
+
+
+<script>
+  const storageKey = "keyPrepProgress";
+
+  const areas = [
+    "debugging",
+    "cp",
+    "dsa",
+    "javascript",
+    "web",
+    "figma",
+    "app",
+    "ai",
+    "hackathon",
+    "quiz",
+    "dbms",
+    "os",
+    "cn",
+    "aptitude",
+    "tech",
+    "viva",
+    "git"
+  ];
+
+  let progress = JSON.parse(localStorage.getItem(storageKey)) || {};
+
+  areas.forEach(area => {
+    if (!progress[area]) {
+      progress[area] = [false, false, false, false];
+    }
+  });
+
+  let currentDay = 1;
+
+
+  function saveProgress() {
+    localStorage.setItem(storageKey, JSON.stringify(progress));
+  }
+
+
+  function updateCards() {
+
+    document.querySelectorAll(".check-card").forEach(card => {
+
+      const area = card.dataset.area;
+      const checkbox = card.querySelector("input");
+
+      checkbox.checked = progress[area][currentDay - 1];
+
+      card.classList.toggle(
+        "checked",
+        checkbox.checked
+      );
+
+    });
+
+    document.getElementById("dayStatus").textContent =
+      "DAY " + currentDay;
+
+    updateOverallProgress();
+  }
+
+
+  function updateOverallProgress() {
+
+    let completedDays = 0;
+
+    for (let day = 0; day < 4; day++) {
+
+      const completed = areas.every(area => {
+        return progress[area][day] === true;
+      });
+
+      if (completed) {
+        completedDays++;
+      }
+    }
+
+    document.getElementById("overallCount").textContent =
+      completedDays;
+
+    document.querySelectorAll(".day").forEach(dayButton => {
+
+      const day = Number(dayButton.dataset.day);
+
+      const completed = areas.every(area => {
+        return progress[area][day - 1] === true;
+      });
+
+      dayButton.classList.toggle(
+        "completed",
+        completed
+      );
+
+    });
+  }
+
+
+  document.querySelectorAll(".day").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+      currentDay = Number(button.dataset.day);
+
+      document.querySelectorAll(".day").forEach(day => {
+        day.classList.remove("active");
+      });
+
+      button.classList.add("active");
+
+      updateCards();
+
+    });
+
+  });
+
+
+  document.querySelectorAll(".check-card").forEach(card => {
+
+    const checkbox = card.querySelector("input");
+
+    checkbox.addEventListener("change", () => {
+
+      const area = card.dataset.area;
+
+      progress[area][currentDay - 1] =
+        checkbox.checked;
+
+      card.classList.toggle(
+        "checked",
+        checkbox.checked
+      );
+
+      saveProgress();
+      updateOverallProgress();
+
+    });
+
+  });
+
+
+  const searchInput =
+    document.getElementById("searchInput");
+
+  searchInput.addEventListener("input", () => {
+
+    const query =
+      searchInput.value.toLowerCase().trim();
+
+    document.querySelectorAll(".resource").forEach(resource => {
+
+      const text =
+        resource.innerText.toLowerCase();
+
+      resource.style.display =
+        text.includes(query) ? "" : "none";
+
+    });
+
+  });
+
+
+  updateCards();
+</script>
+
+</body>
+</html>
